@@ -47,5 +47,5 @@ jobs:
         run: |
           git fetch origin main
           git checkout main
-          git merge ${{ github.ref_name }} --no-ff -m "Merge release"
+          git merge ${{ github.ref_name }} --no-ff -m "Merge release" --allow-unrelated-histories
           git push origin main
