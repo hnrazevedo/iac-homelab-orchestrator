@@ -1,0 +1,10 @@
+---
+- name: Test playbook
+  hosts: localhost
+  remote_user: root
+  tasks:
+    - name: Debug test
+      ansible.builtin.debug:
+        msg: Test
+  # roles:
+  #  - iac-homelab-orchestrator

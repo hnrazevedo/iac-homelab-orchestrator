@@ -1,0 +1,33 @@
+stages:
+  - lint
+  - promote
+
+lint_role:
+  stage: lint
+  image: python:3.11
+  only:
+    - tags
+  script:
+    - pip install --upgrade pip
+    - pip install ansible ansible-lint
+    - ansible-lint
+  artifacts:
+    when: on_failure
+    paths:
+      - .ansible-lint.log
+    expire_in: 1 week
+
+merge_to_main:
+  stage: promote
+  image: alpine:latest
+  needs: ["lint_role"]
+  only:
+    - tags
+  script:
+    - apk add git openssh
+    - git config user.name "GitLab CI"
+    - git config user.email "ci@gitlab.com"
+    - git fetch origin main
+    - git checkout main
+    - git merge "$CI_COMMIT_REF_NAME" --no-ff -m "Merge release"
+    - git push origin main
