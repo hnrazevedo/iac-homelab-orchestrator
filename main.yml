@@ -1,0 +1,11 @@
+---
+- name: Homelab Orchestrator
+  hosts: all
+  tasks:
+    - name: Include vars
+      ansible.builtin.include_vars:
+        file: vars/main.yml
+    
+    - name: Import tasks
+      ansible.builtin.import_tasks:
+        file: tasks/main.yml

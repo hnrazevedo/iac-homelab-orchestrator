@@ -1,0 +1,14 @@
+- name: iac-terraform-runner
+  src: git@github.com:hnrazevedo/iac-proxmox-create.git
+  scm: git
+  version: "main" 
+
+- name: iac-terraform-runner
+  src: git@github.com:hnrazevedo/iac-terraform-proxmox.git
+  scm: git
+  version: "main" 
+
+- name: iac-terraform-runner
+  src: git@github.com:hnrazevedo/iac-terraform-runner.git
+  scm: git
+  version: "main" 
